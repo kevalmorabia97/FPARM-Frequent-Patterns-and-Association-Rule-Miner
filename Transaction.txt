@@ -1,0 +1,10 @@
+apple,ball,egg
+apple,ball,dandiya,egg,fish,apple
+ball,caramel,dandiya,fish,milk
+apple,caramel,fish,fish
+apple,ball,dandiya,fish,milk
+ball,caramel,fish
+apple,ball,dandiya,dandiya,egg,fish,apple
+caramel,dandiya,milk
+apple,ball,caramel,milk
+ball,caramel,milk,ball
