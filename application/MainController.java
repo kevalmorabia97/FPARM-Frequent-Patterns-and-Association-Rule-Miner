@@ -16,14 +16,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController implements Initializable{
-	@FXML private Label status;
+	@FXML private TextArea status;
 	@FXML private Button generateRules;
 	@FXML private Button transactionFileChooser;
 	@FXML private Button attributeFileChooser;
@@ -40,13 +40,14 @@ public class MainController implements Initializable{
 		TFminConf.setTooltip(new Tooltip("Minimum Confidence"));
 		TFnoOfChildsInHT.setTooltip(new Tooltip("No Of Childs In HashTree"));
 		TFmaxItemsPerNodeInHT.setTooltip(new Tooltip("Max Items Per Node In HashTree"));
+		status.setEditable(false);
 	}
 	
 	@FXML public void getTransactionFile() {
 		FileChooser fc = new FileChooser();
 		fc.getExtensionFilters().add(new ExtensionFilter("Text", "*.txt"));
 		try {
-			fc.setInitialDirectory(new File(MainController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
+			fc.setInitialDirectory(new File(MainController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -82,16 +83,18 @@ public class MainController implements Initializable{
 			
 			try {
 				noOfChildsInHT = Integer.valueOf(TFnoOfChildsInHT.getText());
+				if(noOfChildsInHT<=0){throw new NumberFormatException();}
 			} catch (NumberFormatException e) {
-				status.setText("No Of Childs in HashTree should be an integer value");
+				status.setText("No Of Childs in HashTree should be a positive integer value");
 				e.printStackTrace();
 				return;
 			}
 			
 			try {
 				maxItemsPerNodeInHT = Integer.valueOf(TFmaxItemsPerNodeInHT.getText());
+				if(maxItemsPerNodeInHT<=0){throw new NumberFormatException();}
 			} catch (NumberFormatException e) {
-				status.setText("Max items per node in HashTree should be an integer value");
+				status.setText("Max items per node in HashTree should be a positive integer value");
 				e.printStackTrace();
 				return;
 			}
@@ -100,7 +103,7 @@ public class MainController implements Initializable{
 			try {
 				p = new Preprocess(transactionFile);
 			} catch (Exception e) {
-				status.setText("Files are not in the required format");
+				status.setText("Transaction File is not in the required format");
 				e.printStackTrace();
 				return;
 			}
