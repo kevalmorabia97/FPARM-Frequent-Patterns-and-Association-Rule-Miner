@@ -35,13 +35,13 @@ caramel,dandiya,milk
 apple,ball,caramel,milk
 ball,caramel,milk,ball
 ```
-**# Note:** 
-If the transaction has more than one appearance of an item then only one appearance is considered
-<br>If you have transaction in the form of like this then also the algorithm works
+### Note: 
+- If the transaction has more than one appearance of an item then only one appearance is considered
+- If you have transaction in the form of like this then also the algorithm works
 ```
 bus=yes,plane=no,rich=yes
 ```
-<br>If you have continuous data then you can descretize the data then run this application
+- If you have continuous data then you can descretize the data then run this application
 For Ex: divide age in groups like
 <br>Age=[0,10)
 <br>Age=[10,20)
