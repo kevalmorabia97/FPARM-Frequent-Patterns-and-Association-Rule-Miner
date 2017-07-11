@@ -1,8 +1,12 @@
 # _Apriori Frequent Itemset Generation and Association Rule Mining in Java_
 
+<hr>
+
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 
 The GUI of this application is made using JAVA FX and scene builder
+
+<hr>
 
 - Support is an indication of how frequently the itemset appears in the dataset.
 The support of X with respect to T is defined as the proportion of transactions t in the dataset which contains the itemset X.
@@ -15,6 +19,8 @@ The confidence value of a rule, X => Y with respect to a set of transactions T, 
 - Apriori Algorithm uses a breadth-first search strategy to count the support of itemsets and uses a candidate generation function which exploits the downward closure property of support.
 <br>Read More: https://en.wikipedia.org/wiki/Apriori_algorithm
 
+<hr>
+
 1. Numbered First, the application generates frequent 1 itemsets.
 2. Numbered After generating Frequent K itemsets, it generate Frequent K+1 itemsets by using F<sub>k-1</sub> x F<sub>k-1</sub> approach.
 3. Numbered The frequent itemsets are stored in **frequentItemsets.txt** file
@@ -22,7 +28,9 @@ The confidence value of a rule, X => Y with respect to a set of transactions T, 
 
 Read about Association Rule Mining: _https://en.wikipedia.org/wiki/Association_rule_learning_
 
-To generate frequent itemsets and association rules you have to select the transaction file which should be of the following form:
+<hr>
+
+To generate frequent itemsets and association rules you have to select the **transaction file** which should be of the following form:
 ```
 apple,ball,egg
 apple,ball,dandiya,egg,fish,apple
@@ -51,10 +59,10 @@ ans so on...
 Age=[21,30),Salary=[70k,120k),Browser=Mozilla
 ```
 
-
+<hr>
 
 After that, the transaction is processed and converted to numbers which makes it easier to handle in the hashtree
-The processed transaction is saved inside _ProcessedTransaction.txt_ file which looks like this:
+The processed transaction is saved inside **_ProcessedTransaction.txt_** file which looks like this:
 ```
 0,1,2,
 0,1,2,3,4,
@@ -67,7 +75,10 @@ The processed transaction is saved inside _ProcessedTransaction.txt_ file which 
 0,1,5,6,
 1,5,6,
 ```
-After that the frequent itemsets are generated which are stored in _frequentItemsets.txt_ file which looks like this:
+
+<hr>
+
+After that the frequent itemsets are generated which are stored in **_frequentItemsets.txt_** file which looks like this:
 ```
 Frequent 1 Itemsets:
 ball, (8)
@@ -103,7 +114,9 @@ apple, ball, dandiya, fish, (3)
 ```
 Here the number inside parenthesis indicates the support count of the frequent itemset
 
-Finally, the association rules are generated and stored in _AssociationRules.txt_ file which looks like this:
+<hr>
+
+Finally, the association rules are generated and stored in **_AssociationRules.txt_** file which looks like this:
 ```
 apple, (6) ----> ball, (8) conf(0.8333333)
 egg, (3) ----> ball, (8) conf(1.0)
@@ -139,5 +152,7 @@ apple, fish, (4) ----> ball, dandiya, (4) conf(0.75)
 apple, dandiya, (3) ----> ball, fish, (5) conf(1.0)
 ```
 Here the number inside parenthesis besides the itemset is its support count and conf(*) denotes the confidence of the association rule
+
+<hr>
 
 **Feel free to contact me if you have any doubt. My email ID is: f2015143@hyderabad.bits-pilani.ac.in**
