@@ -35,7 +35,7 @@ caramel,dandiya,milk
 apple,ball,caramel,milk
 ball,caramel,milk,ball
 ```
-**Note: 
+**# Note:** 
 If the transaction has more than one appearance of an item then only one appearance is considered
 <br>If you have transaction in the form of like this then also the algorithm works
 ```
@@ -50,7 +50,7 @@ ans so on...
 ```
 Age=[21,30),Salary=[70k,120k),Browser=Mozilla
 ```
-**
+
 
 
 After that, the transaction is processed and converted to numbers which makes it easier to handle in the hashtree
