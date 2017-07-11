@@ -6,11 +6,11 @@ The GUI of this application is made using JAVA FX and scene builder
 
 - Support is an indication of how frequently the itemset appears in the dataset.
 The support of X with respect to T is defined as the proportion of transactions t in the dataset which contains the itemset X.
- ![Image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1c6acacd3b17051205704b5d323c83fc737e5db1)
+ <br>![Image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1c6acacd3b17051205704b5d323c83fc737e5db1)
 
 - Confidence is an indication of how often the rule has been found to be true.
 The confidence value of a rule, X => Y with respect to a set of transactions T, is the proportion of the transactions that contains X which also contains Y.
-![Image](https://wikimedia.org/api/rest_v1/media/math/render/svg/90324dedc399441696116eed3658fd17c5da4329)
+<br>![Image](https://wikimedia.org/api/rest_v1/media/math/render/svg/90324dedc399441696116eed3658fd17c5da4329)
 
 - Apriori Algorithm uses a breadth-first search strategy to count the support of itemsets and uses a candidate generation function which exploits the downward closure property of support.
 <br>Read More: https://en.wikipedia.org/wiki/Apriori_algorithm
