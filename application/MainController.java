@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+@SuppressWarnings("unused")
 
 public class MainController implements Initializable{
 	@FXML private TextArea status;
@@ -45,7 +46,7 @@ public class MainController implements Initializable{
 	
 	@FXML public void getTransactionFile() {
 		FileChooser fc = new FileChooser();
-		fc.getExtensionFilters().add(new ExtensionFilter("Text", "*.txt"));
+		//fc.getExtensionFilters().add(new ExtensionFilter("Text", "*.txt"));
 		try {
 			fc.setInitialDirectory(new File(MainController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile());
 		} catch (URISyntaxException e) {
@@ -111,7 +112,7 @@ public class MainController implements Initializable{
 			noOfAttributes = p.noOfAttributes;
 			long start = System.currentTimeMillis();
 
-			status.setText(status.getText()+"Generating Frequent Itemsets:");
+			//status.setText(status.getText()+"Generating Frequent Itemsets:");
 			FrequentItemsetGeneration f;
 			try {
 				f = new FrequentItemsetGeneration(noOfChildsInHT,maxItemsPerNodeInHT,minSup, noOfTransactions,noOfAttributes);
