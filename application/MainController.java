@@ -133,9 +133,10 @@ public class MainController implements Initializable{
 						freqItemset+="("+countFk+")\n";
 						bw.write(freqItemset);
 					}
-					status.setText(status.getText()+"\nFrequent "+k+": "+FK.size());
+					status.setText(status.getText()+"Frequent "+k+": "+FK.size()+"\n");
 				}
 				bw.close();
+				status.setText(status.getText()+"\nFrequent Itemsets are saved in frequentItemsets.txt\n");
 			} catch (IOException e) {
 				status.setText("Error in generating frequent itemsets");
 				e.printStackTrace();
@@ -144,7 +145,7 @@ public class MainController implements Initializable{
 			
 			long end = System.currentTimeMillis();
 			double time = (end-start)/1000.0;
-			status.setText(status.getText()+"\nTime: "+time+" sec");
+			status.setText(status.getText()+"Time: "+time+" sec");
 			
 			status.setText(status.getText()+"\n\nWriting Rules:");
 			try {
