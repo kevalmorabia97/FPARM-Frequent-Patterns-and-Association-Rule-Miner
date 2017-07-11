@@ -48,11 +48,11 @@ ball,caramel,milk,ball
 bus=yes,plane=no,rich=yes
 ```
 - If you have continuous data then you can descretize the data then run this application
-For Ex: divide age in groups like
+<br>For Ex: divide age in groups like
 <br>Age=[0,10)
 <br>Age=[10,20)
 <br>Age=[20,30)
-ans so on...
+<br>and so on...
 ```
 Age=[21,30),Salary=[70k,120k),Browser=Mozilla
 ```
