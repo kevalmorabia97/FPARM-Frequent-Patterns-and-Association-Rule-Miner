@@ -35,6 +35,24 @@ caramel,dandiya,milk
 apple,ball,caramel,milk
 ball,caramel,milk,ball
 ```
+**Note: 
+If the transaction has more than one appearance of an item then only one appearance is considered
+<br>If you have transaction in the form of like this then also the algorithm works
+```
+bus=yes,plane=no,rich=yes
+```
+<br>If you have continuous data then you can descretize the data then run this application
+For Ex: divide age in groups like
+<br>Age=[0,10)
+<br>Age=[10,20)
+<br>Age=[20,30)
+ans so on...
+```
+Age=[21,30),Salary=[70k,120k),Browser=Mozilla
+```
+**
+
+
 After that, the transaction is processed and converted to numbers which makes it easier to handle in the hashtree
 The processed transaction is saved inside _ProcessedTransaction.txt_ file which looks like this:
 ```
@@ -122,4 +140,4 @@ apple, dandiya, (3) ----> ball, fish, (5) conf(1.0)
 ```
 Here the number inside parenthesis besides the itemset is its support count and conf(*) denotes the confidence of the association rule
 
-
+**Feel free to contact me if you have any doubt. My email ID is: f2015143@hyderabad.bits-pilani.ac.in**
