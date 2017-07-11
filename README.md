@@ -5,7 +5,7 @@ This is an implementation of Apriori algorithm for frequent itemset generation u
 The GUI of this application is made using JAVA FX and scene builder
 
 You can directly run the application by running the **_Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining-in-JAVA.jar_** file and selecting the transaction file in it. You will need JAVA installed to run the .jar file.
-### Note: When you download the jar file, you may be warned that this file iscan harm your computer but dont worry, it is totally safe
+### Note: When you download the jar file, you may be warned that this file can harm your computer but dont worry, it is totally safe
 <hr>
 
 - Support is an indication of how frequently the itemset appears in the dataset.
