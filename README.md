@@ -1,7 +1,5 @@
 # _Apriori Frequent Itemset Generation and Association Rule Mining in Java_
 
-<hr>
-
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 
 The GUI of this application is made using JAVA FX and scene builder
