@@ -22,10 +22,10 @@ The confidence value of a rule, X => Y with respect to a set of transactions T, 
 
 <hr>
 
-1. Numbered First, the application generates frequent 1 itemsets.
-2. Numbered After generating Frequent K itemsets, it generate Frequent K+1 itemsets by using F<sub>k-1</sub> x F<sub>k-1</sub> approach.
-3. Numbered The frequent itemsets are stored in **frequentItemsets.txt** file
-4. Numbered When all frequent itemsets are generated, associating rules that have confidence greater than minimum confidence are generated and stored in the file named **AssociationRules.txt** file.
+1. First, the application generates frequent 1 itemsets.
+2. After generating Frequent K itemsets, it generate Frequent K+1 itemsets by using F<sub>k-1</sub> x F<sub>k-1</sub> approach.
+3. The frequent itemsets are stored in **frequentItemsets.txt** file
+4. When all frequent itemsets are generated, associating rules that have confidence greater than minimum confidence are generated and stored in the file named **AssociationRules.txt** file.
 
 Read about Association Rule Mining: _https://en.wikipedia.org/wiki/Association_rule_learning_
 
