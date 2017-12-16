@@ -19,10 +19,10 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <TextField fx:id="TFminSup" promptText="Minimum Support" text="0.3" />
+            <TextField fx:id="TFminSup" promptText="Minimum Support" text="0.05" />
             <Separator orientation="VERTICAL" />
             <Label prefHeight="36.0" prefWidth="114.0" text="Minimum Confidence" />
-            <TextField fx:id="TFminConf" promptText="Minimum Confidence" text="0.75" />
+            <TextField fx:id="TFminConf" promptText="Minimum Confidence" text="0.5" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

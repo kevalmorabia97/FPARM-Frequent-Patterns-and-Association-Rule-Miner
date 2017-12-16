@@ -118,7 +118,7 @@ public class MainController implements Initializable{
 				f = new FrequentItemsetGeneration(noOfChildsInHT,maxItemsPerNodeInHT,minSup, noOfTransactions,noOfAttributes);
 				
 				//Saving Frequent Itemsets in frequentItemsets.txt
-				BufferedWriter bw = new BufferedWriter(new FileWriter("frequentItemsets.txt"));
+				BufferedWriter bw = new BufferedWriter(new FileWriter("data/frequentItemsets.txt"));
 				Hashtable<Integer, String> noToAttr = p.noToAttr;
 				for(int k = 1; k <= f.maxLengthOfFreqItemsets; k++){
 					bw.write("\nFrequent "+k+" Itemsets:\n");
@@ -136,7 +136,7 @@ public class MainController implements Initializable{
 					status.setText(status.getText()+"Frequent "+k+": "+FK.size()+"\n");
 				}
 				bw.close();
-				status.setText(status.getText()+"\nFrequent Itemsets are saved in frequentItemsets.txt\n");
+				status.setText(status.getText()+"\nFrequent Itemsets are saved in data/frequentItemsets.txt\n");
 			} catch (IOException e) {
 				status.setText("Error in generating frequent itemsets");
 				e.printStackTrace();
@@ -159,7 +159,7 @@ public class MainController implements Initializable{
 			end = System.currentTimeMillis();
 			time = (end-start)/1000.0;
 			status.setText(status.getText()+"\nTime: "+time+" sec\nEND...");
-			status.setText(status.getText()+"\n\nAssociation Rules Generated in AssociationRules.txt");
+			status.setText(status.getText()+"\n\nAssociation Rules Generated in data/AssociationRules.txt");
 	}
 	
 }

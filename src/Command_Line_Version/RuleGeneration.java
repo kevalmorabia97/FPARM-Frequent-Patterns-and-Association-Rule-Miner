@@ -1,4 +1,4 @@
-package src.GUI_Version;
+package src.Command_Line_Version;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
