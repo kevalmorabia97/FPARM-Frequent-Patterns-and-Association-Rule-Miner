@@ -161,4 +161,4 @@ Here the number inside parenthesis besides the itemset is its support count and 
 
 <hr>
 
-**Feel free to contact me if you have any doubt. My email ID is: f20150143@hyderabad.bits-pilani.ac.in**
+**Feel free to contact me if you have any doubt. My email ID is: f20150143'AT'hyderabad'DOT'bits'HYPHEN'pilani'DOT'ac'DOT'in**
