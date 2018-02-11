@@ -2,7 +2,12 @@
 
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 <br>There is a GUI version(requires JAVA FX support) and a command line version.
-<br>This is an eclipse project so import this project on eclipse to run.
+
+**Running The Program from _Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining_ folder**
+```
+javac src\Command_Line_Version\Main.java
+javac src.Command_Line_Version.Main
+```
 
 The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
 <br>![Image](https://mrcheerful.000webhostapp.com/Apriori%20GUI%20GitHub%20Repo.PNG)<br>
