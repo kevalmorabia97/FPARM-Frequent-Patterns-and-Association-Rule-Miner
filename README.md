@@ -6,7 +6,7 @@ This is an implementation of Apriori algorithm for frequent itemset generation u
 **Running The Program from _Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining_ folder**
 ```
 javac src\Command_Line_Version\Main.java
-javac src.Command_Line_Version.Main
+java src.Command_Line_Version.Main
 ```
 
 The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
