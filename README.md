@@ -4,7 +4,7 @@ This is an implementation of Apriori algorithm for frequent itemset generation u
 <br>There is a GUI version(requires JAVA FX support) and a command line version.
 
 **Running The Program from _Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining_ folder**
-Note: The dataset should be inside _**data**_ folder and named _**Transaction.txt**_
+<br>**Note:** The dataset should be inside _**data**_ folder and named _**Transaction.txt**_
 ```
 Command_Line_Version:
 javac src\Command_Line_Version\Main.java
