@@ -175,7 +175,3 @@ apple, fish, (4) ----> ball, dandiya, (4) conf(0.75)
 apple, dandiya, (3) ----> ball, fish, (5) conf(1.0)
 ```
 Here the number inside parenthesis besides the itemset is its support count and conf(*) denotes the confidence of the association rule
-
-<hr>
-
-**Feel free to contact me if you have any doubt. My email ID is: f20150143'AT'hyderabad'DOT'bits'HYPHEN'pilani'DOT'ac'DOT'in**
