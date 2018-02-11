@@ -1,21 +1,27 @@
 # _Apriori Frequent Itemset Generation and Association Rule Mining in Java_
 
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
-<br>There is a GUI version(requires JAVA FX support) and a command line version.
+<br>There is a GUI version and a command line version.
 
 **Running The Program from _Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining_ folder**
 <br>**Note:** The dataset should be inside _**data**_ folder and named _**Transaction.txt**_
 ```
 Command_Line_Version:
-javac src\Command_Line_Version\Main.java
-java src.Command_Line_Version.Main
+$ javac src\Command_Line_Version\Main.java
+$ java src.Command_Line_Version.Main
 
 GUI_Version:
-javac src\GUI_Version\Main.java src\GUI_Version\MainController.java
-java src.GUI_Version.Main
+$ javac src\GUI_Version\Main.java src\GUI_Version\MainController.java
+$ java src.GUI_Version.Main
+```
+**Note**: If GUI_Version is not running properly then you need to install Oracle JDK as below:
+```
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java8-installer
 ```
 
-The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
+<br>The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
 <br>![Image](https://mrcheerful.000webhostapp.com/Apriori%20GUI%20GitHub%20Repo.PNG)<br>
 
 You can directly run the application by running the **_Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining-in-JAVA.jar_** file and selecting the transaction file in it. You will need JAVA installed to run the .jar file.
