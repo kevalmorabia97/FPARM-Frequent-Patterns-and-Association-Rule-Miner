@@ -16,12 +16,12 @@ public class Preprocess{
 	Hashtable<String, Integer> AttrToNo = new Hashtable<>();
 	File transactionFile;
 	int noOfTransactions=0, noOfAttributes=0;
-	
+
 	public Preprocess(File transactionFile) throws IOException{
 		this.transactionFile = transactionFile;
 		preprocess();
 	}
-	
+
 	void preprocess() throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader(transactionFile));
 		BufferedWriter bw = new BufferedWriter(new FileWriter("data/ProcessedTransaction.txt"));

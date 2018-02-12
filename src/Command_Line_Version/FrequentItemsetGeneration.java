@@ -49,7 +49,7 @@ public class FrequentItemsetGeneration{
 		ArrayList<Itemset> CK = new ArrayList<>();
 		Set<ArrayList<Integer>> s = FKMinus1.keySet();
 		ArrayList<ArrayList<Integer>> items = new ArrayList<ArrayList<Integer>>(s);
-		
+
 		for(int i = 0; i < items.size(); i++){
 			for(int j = i+1; j < items.size(); j++){
 				ArrayList<Integer> i1 = items.get(i);

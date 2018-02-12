@@ -11,7 +11,7 @@ public class HashTree{
 	HTNode root;//depth=0;
 	int maxItemsPerNode, maxDepth, minSupCount, NoOfTransactions, noOfChilds;
 	HashMap<ArrayList<Integer>,Integer> freqK = new HashMap<>();
-	
+
 	public HashTree(ArrayList<Itemset> candidateKItemsets, int k, int noOfChilds, int maxItemsPerNode, double minSup, int noOfTransactions) throws IOException{
 		this.maxItemsPerNode = maxItemsPerNode;
 		this.noOfChilds = noOfChilds;
@@ -42,9 +42,9 @@ public class HashTree{
 				root.child[hash].isLeaf = false;
 				ArrayList<Itemset> is = root.child[hash].items;
 				is.add(i);
-					for(Itemset item: is)
-						insert(root.child[hash],item,digit+1);			
-					root.child[hash].items = null;
+				for(Itemset item: is)
+					insert(root.child[hash],item,digit+1);			
+				root.child[hash].items = null;
 			}
 		}else	root.child[hash].items.add(i);
 	}
@@ -64,7 +64,7 @@ public class HashTree{
 			preOrder(root.child[i]);
 		}
 	}
-	
+
 	void getFreqKFromHT(int k, double minSup) throws IOException{
 		BufferedReader br = new BufferedReader(new FileReader("data/ProcessedTransaction.txt"));
 		String s;
@@ -78,13 +78,13 @@ public class HashTree{
 				ArrayList<Integer> t = new ArrayList<>();
 				int[] comb = subsets[i];
 				for(int j = 0; j <k; j++)	t.add(trans.get(comb[j]));
-	            updateCount(t);
+				updateCount(t);
 			}
 		}
 		br.close();
 		search(root);
 	}
-	
+
 	void updateCount(ArrayList<Integer> trans){
 		int digit=0;
 		HTNode n = root;
@@ -95,7 +95,7 @@ public class HashTree{
 		if(n==null)	return;
 		for(Itemset i: n.items)	if(i.equals(trans)){i.count++;	break;}
 	}
-	
+
 	void search(HTNode n){// select those itemsets which have supportCount >= minSupportCount
 		if(n==null)	return;
 		if(n.isLeaf)

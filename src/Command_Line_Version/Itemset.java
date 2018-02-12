@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Itemset{
 	ArrayList<Integer> value;
 	int count = 0;
-	
+
 	public Itemset(ArrayList<Integer> a){
 		value = a;
 	}
-	
+
 	public boolean equals(Object obj){
 		@SuppressWarnings("unchecked")
 		ArrayList<Integer> given = (ArrayList<Integer>)obj;

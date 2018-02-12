@@ -50,7 +50,7 @@ public class Main{
 		System.out.println("\nWriting Rules:");
 		new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets, minSup, minConf, noOfTransactions, p.noToAttr);
 		System.out.println("Association Rules Generated in data/AssociationRules.txt");
-		
+
 		end = System.currentTimeMillis();
 		time = (end-start)/1000.0;
 		System.out.println("Time: "+time+" sec\nEND...");
