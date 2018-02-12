@@ -14,7 +14,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
-			primaryStage.setTitle("Association Rule Generator");
+			primaryStage.setTitle("FPARM - Frequent Patterns and Association Rule Miner");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
