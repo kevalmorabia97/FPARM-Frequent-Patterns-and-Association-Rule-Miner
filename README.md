@@ -26,7 +26,7 @@ $ sudo apt-get install oracle-java8-installer
 
 You can directly run the application by extracting the jar inside **_FPARM-Frequent.Patterns.and.Association.Rule.Miner.zip
 _** file and running it. You will need ORACLE JDK to run the JAVA Fx .jar file.
-**Note:** Dont directly run from zip file as the files generated will be stored in cache. So first extract then only run the .jar.
+<br>**Note:** Dont directly run from zip file as the files generated will be stored in cache. So first extract then only run the .jar.
 <hr>
 
 - Support is an indication of how frequently the itemset appears in the dataset.
