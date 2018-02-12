@@ -24,8 +24,8 @@ $ sudo apt-get install oracle-java8-installer
 <br>The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
 <br>![Image](https://mrcheerful.000webhostapp.com/Apriori%20GUI%20GitHub%20Repo.PNG)<br>
 
-You can directly run the application by running the **_Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining-in-JAVA.jar_** file and selecting the transaction file in it. You will need JAVA installed to run the .jar file.
-<br>Note: When you download the jar file, you may be warned that this file can harm your computer but dont worry, it is totally safe
+You can directly run the application by running the jar inside **_FPARM-Frequent.Patterns.and.Association.Rule.Miner.zip
+_** file and selecting the transaction file in it. You will need ORACLE JDK to run the .jar file.
 <hr>
 
 - Support is an indication of how frequently the itemset appears in the dataset.
