@@ -1,9 +1,9 @@
-# _Apriori Frequent Itemset Generation and Association Rule Mining in Java_
+# _FPARM - Frequent Patterns and Association Rule Miner_
 
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 <br>There is a GUI version and a command line version.
 
-**Running The Program from _Apriori-Frequent-Itemset-generation-and-Association-Rule-Mining_ folder**
+**Running The Program from _FPARM-Frequent-Patterns-and-Association-Rule-Miner _ folder**
 <br>**Note:** The dataset should be inside _**data**_ folder and named _**Transaction.txt**_
 ```
 Command_Line_Version:
