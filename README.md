@@ -3,7 +3,7 @@
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 <br>There is a GUI version and a command line version.
 
-**Running The Program from _FPARM-Frequent-Patterns-and-Association-Rule-Miner _ folder**
+**Running The Program from _FPARM-Frequent-Patterns-and-Association-Rule-Miner_ folder**
 <br>**Note:** The dataset should be inside _**data**_ folder and named _**Transaction.txt**_
 ```
 Command_Line_Version:
