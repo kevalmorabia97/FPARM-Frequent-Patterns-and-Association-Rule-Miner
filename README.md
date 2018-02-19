@@ -24,8 +24,7 @@ $ sudo apt-get install oracle-java8-installer
 <br>The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
 <br>![Image](https://mrcheerful.000webhostapp.com/Apriori%20GUI%20GitHub%20Repo.PNG)<br>
 
-You can directly run the application by extracting the jar inside **_FPARM-Frequent.Patterns.and.Association.Rule.Miner.zip
-_** file and running it. You will need ORACLE JDK to run the JAVA Fx .jar file.
+You can directly run the application by extracting the jar inside **_FPARM-Frequent.Patterns.and.Association.Rule.Miner.zip_** file and running it. You will need ORACLE JDK to run the JAVA Fx .jar file.
 <br>**Note:** Dont directly run from zip file as the files generated will be stored in cache. So first extract then only run the .jar.
 <hr>
 
