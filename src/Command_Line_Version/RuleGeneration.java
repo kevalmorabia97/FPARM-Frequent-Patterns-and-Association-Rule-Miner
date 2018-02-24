@@ -10,19 +10,18 @@ import java.util.Set;
 
 public class RuleGeneration {
 	double minSup, minConf;
-	int NoOfTransactions, maxLengthOfFreqItemsets;
+	int maxLengthOfFreqItemsets;
 	ArrayList<HashMap<ArrayList<Integer>,Integer>> freqK;
 	Hashtable<Integer,String> noToAttr;
 	BufferedWriter bw;
 
-	public RuleGeneration(ArrayList<HashMap<ArrayList<Integer>,Integer>> freqK, int maxLengthOfFreqItemsets, double minSup, double minConf, int NoOfTransactions, Hashtable<Integer, String> noToAttr) throws IOException{
-		this.minSup = minSup;
-		this.minConf = minConf;
-		this.NoOfTransactions = NoOfTransactions;
+	public RuleGeneration(ArrayList<HashMap<ArrayList<Integer>,Integer>> freqK, int maxLengthOfFreqItemsets) throws IOException{
+		this.minSup = Main.minSup;
+		this.minConf = Main.minConf;
 		this.maxLengthOfFreqItemsets = maxLengthOfFreqItemsets;
 		this.freqK = freqK;
-		this.noToAttr = noToAttr;
-		bw = new BufferedWriter(new FileWriter("data/AssociationRules.txt"));
+		this.noToAttr = Preprocess.noToAttr;
+		bw = new BufferedWriter(new FileWriter(Main.rulesFile));
 		generateRules();
 		bw.close();
 	}

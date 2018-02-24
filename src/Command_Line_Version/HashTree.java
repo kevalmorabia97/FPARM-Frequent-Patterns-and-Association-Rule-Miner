@@ -9,20 +9,20 @@ import java.util.StringTokenizer;
 
 public class HashTree{
 	HTNode root;//depth=0;
-	int maxItemsPerNode, maxDepth, minSupCount, NoOfTransactions, noOfChilds;
+	int maxItemsPerNode, maxDepth, minSupCount, noOfTransactions, noOfChilds;
 	HashMap<ArrayList<Integer>,Integer> freqK = new HashMap<>();
 
-	public HashTree(ArrayList<Itemset> candidateKItemsets, int k, int noOfChilds, int maxItemsPerNode, double minSup, int noOfTransactions) throws IOException{
-		this.maxItemsPerNode = maxItemsPerNode;
-		this.noOfChilds = noOfChilds;
-		this.NoOfTransactions = noOfTransactions;
-		this.minSupCount = (int)(minSup*noOfTransactions);
+	public HashTree(ArrayList<Itemset> candidateKItemsets, int k) throws IOException{
+		this.maxItemsPerNode = Main.maxItemsPerNodeInHT;
+		this.noOfChilds = Main.noOfChildsInHT;
+		this.noOfTransactions = Preprocess.noOfTransactions;
+		this.minSupCount = (int)(Main.minSup*noOfTransactions);
 		maxDepth = k;
 		root = new HTNode(0,noOfChilds);//depth = 0
 		for(Itemset i: candidateKItemsets){
 			insert(root, i, 0);//0th digit for hash
 		}
-		getFreqKFromHT(k, minSup);
+		getFreqKFromHT(k);
 	}
 
 	void insert(HTNode root, Itemset i, int digit){//digit(0-indexed) on which hash is applied
@@ -65,8 +65,8 @@ public class HashTree{
 		}
 	}
 
-	void getFreqKFromHT(int k, double minSup) throws IOException{
-		BufferedReader br = new BufferedReader(new FileReader("data/ProcessedTransaction.txt"));
+	void getFreqKFromHT(int k) throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader(Main.processedTransactionFile));
 		String s;
 		while((s=br.readLine())!=null){
 			StringTokenizer st = new StringTokenizer(s,",");

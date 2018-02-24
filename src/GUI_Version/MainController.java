@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,25 +15,26 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
-@SuppressWarnings("unused")
 
 public class MainController implements Initializable{
 	@FXML private TextArea status;
 	@FXML private Button generateRules;
 	@FXML private Button transactionFileChooser;
-	@FXML private Button attributeFileChooser;
 	@FXML private TextField TFminSup;
 	@FXML private TextField TFminConf;
 	@FXML private TextField TFnoOfChildsInHT;
 	@FXML private TextField TFmaxItemsPerNodeInHT;
+	@FXML private Hyperlink githubLink;
+	static File transactionFile,processedTransactionFile,freqItemsetFile,rulesFile;
+	static int noOfTransactions, noOfChildsInHT, maxItemsPerNodeInHT, noOfAttributes;
+	static double minSup, minConf;
 
-	File transactionFile;
-
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		TFminSup.setTooltip(new Tooltip("Minimum Support"));
@@ -42,16 +42,27 @@ public class MainController implements Initializable{
 		TFnoOfChildsInHT.setTooltip(new Tooltip("No Of Childs In HashTree"));
 		TFmaxItemsPerNodeInHT.setTooltip(new Tooltip("Max Items Per Node In HashTree"));
 		status.setEditable(false);
+		
+		githubLink.setTooltip(new Tooltip("kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner"));
+		githubLink.setOnAction(e -> {
+		        try {
+					new ProcessBuilder("x-www-browser", "https://github.com/kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner").start();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+		});
+		
 	}
 
 	@FXML public void getTransactionFile() {
 		FileChooser fc = new FileChooser();
 		//fc.getExtensionFilters().add(new ExtensionFilter("Text", "*.txt"));
+		/*
 		try {
 			fc.setInitialDirectory(new File(MainController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-		}
+		}*/
 		transactionFile = fc.showOpenDialog(null);
 		if(transactionFile == null){
 			status.setText("Transaction File not Selected");
@@ -59,10 +70,15 @@ public class MainController implements Initializable{
 	}
 
 	@FXML public void btnGenRules(ActionEvent event){
+		status.setText("Generating frequent itemsets and Association Rules");
+		genRules(event);
+	}
+	
+	private void genRules(ActionEvent event){
 		status.setText("");
-
-		int noOfTransactions, noOfChildsInHT, maxItemsPerNodeInHT, noOfAttributes;
-		double minSup, minConf;
+		processedTransactionFile = new File("data/processedTransaction.data");
+		freqItemsetFile = new File("data/frequentItemsets.data");
+		rulesFile = new File("data/associationRules.data");
 
 		try {
 			minSup = Double.valueOf(TFminSup.getText());
@@ -100,26 +116,25 @@ public class MainController implements Initializable{
 			return;
 		}
 
-		Preprocess p;
 		try {
-			p = new Preprocess(transactionFile);
+			new Preprocess();
 		} catch (Exception e) {
-			status.setText("Transaction File is not in the required format");
+			status.setText("Transaction File is not selected or in the required format");
 			e.printStackTrace();
 			return;
 		}
-		noOfTransactions = p.noOfTransactions;
-		noOfAttributes = p.noOfAttributes;
+		noOfTransactions = Preprocess.noOfTransactions;
+		noOfAttributes = Preprocess.noOfAttributes;
 		long start = System.currentTimeMillis();
 
 		//status.setText(status.getText()+"Generating Frequent Itemsets:");
 		FrequentItemsetGeneration f;
 		try {
-			f = new FrequentItemsetGeneration(noOfChildsInHT,maxItemsPerNodeInHT,minSup, noOfTransactions,noOfAttributes);
+			f = new FrequentItemsetGeneration();
 
 			//Saving Frequent Itemsets in frequentItemsets.txt
-			BufferedWriter bw = new BufferedWriter(new FileWriter("data/frequentItemsets.txt"));
-			Hashtable<Integer, String> noToAttr = p.noToAttr;
+			BufferedWriter bw = new BufferedWriter(new FileWriter(freqItemsetFile));
+			Hashtable<Integer, String> noToAttr = Preprocess.noToAttr;
 			for(int k = 1; k <= f.maxLengthOfFreqItemsets; k++){
 				bw.write("\nFrequent "+k+" Itemsets:\n");
 				HashMap<ArrayList<Integer>,Integer> FK = f.getFreqKItemset(k);
@@ -133,33 +148,33 @@ public class MainController implements Initializable{
 					freqItemset+="("+countFk+")\n";
 					bw.write(freqItemset);
 				}
-				status.setText(status.getText()+"Frequent "+k+": "+FK.size()+"\n");
+				status.appendText("Frequent "+k+": "+FK.size()+"\n");
 			}
 			bw.close();
-			status.setText(status.getText()+"\nFrequent Itemsets are saved in data/frequentItemsets.txt\n");
+			status.appendText("\nFrequent Itemsets are saved in data/frequentItemsets.data\n");
 		} catch (IOException e) {
-			status.setText("Error in generating frequent itemsets");
+			status.appendText("Error in generating frequent itemsets");
 			e.printStackTrace();
 			return;
 		}
 
 		long end = System.currentTimeMillis();
 		double time = (end-start)/1000.0;
-		status.setText(status.getText()+"Time: "+time+" sec");
+		status.appendText("Time: "+time+" sec");
 
-		status.setText(status.getText()+"\n\nWriting Rules:");
+		status.appendText("\n\nWriting Rules:");
 		try {
-			new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets, minSup, minConf, noOfTransactions, p.noToAttr);
+			new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets);
 		} catch (IOException e) {
-			status.setText("Error in rule Generation");
+			status.appendText("Error in rule Generation");
 			e.printStackTrace();
 			return;
 		}
 
 		end = System.currentTimeMillis();
 		time = (end-start)/1000.0;
-		status.setText(status.getText()+"\nTime: "+time+" sec\nEND...");
-		status.setText(status.getText()+"\n\nAssociation Rules Generated in data/AssociationRules.txt");
+		status.appendText("\nTime: "+time+" sec\nEND...");
+		status.appendText("\n\nAssociation Rules Generated in data/AssociationRules.data");
 	}
 
 }

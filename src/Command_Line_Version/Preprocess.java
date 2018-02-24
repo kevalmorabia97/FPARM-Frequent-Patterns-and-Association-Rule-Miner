@@ -2,7 +2,6 @@ package src.Command_Line_Version;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,19 +11,17 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 
 public class Preprocess{
-	Hashtable<Integer, String> noToAttr = new Hashtable<>();
-	Hashtable<String, Integer> AttrToNo = new Hashtable<>();
-	File transactionFile;
-	int noOfTransactions=0, noOfAttributes=0;
+	static Hashtable<Integer, String> noToAttr = new Hashtable<>();
+	static Hashtable<String, Integer> AttrToNo = new Hashtable<>();
+	static int noOfTransactions=0, noOfAttributes=0;
 
-	public Preprocess(File transactionFile) throws IOException{
-		this.transactionFile = transactionFile;
+	public Preprocess() throws IOException{
 		preprocess();
 	}
 
 	void preprocess() throws IOException{
-		BufferedReader br = new BufferedReader(new FileReader(transactionFile));
-		BufferedWriter bw = new BufferedWriter(new FileWriter("data/ProcessedTransaction.txt"));
+		BufferedReader br = new BufferedReader(new FileReader(Main.transactionFile));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(Main.processedTransactionFile));
 		String s;
 		while((s=br.readLine())!=null){	
 			bw.write(convert(s));

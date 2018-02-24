@@ -10,21 +10,31 @@ import java.util.Hashtable;
 import java.util.Set;
 
 public class Main{
-
+	static File transactionFile,processedTransactionFile,freqItemsetFile,rulesFile;
+	static int noOfTransactions, noOfAttributes, noOfChildsInHT=4, maxItemsPerNodeInHT=5; 
+	static double minSup, minConf;
+	
 	public static void main(String[] args) throws IOException{
-		int noOfTransactions, noOfChildsInHT=4, maxItemsPerNodeInHT=5, noOfAttributes;
-		double minSup=.05, minConf=.5;
+		// INPUT
+		transactionFile = new File("data/Transaction.data");
+		minSup=.05; minConf=.5;
+		noOfChildsInHT=4; maxItemsPerNodeInHT=5; 
+		
+		// OUTPUT
+		processedTransactionFile = new File("data/processedTransaction.data");
+		freqItemsetFile = new File("data/frequentItemsets.data");
+		rulesFile = new File("data/associationRules.data");
+		
+		
 
-		Preprocess p = new Preprocess(new File("data/Transaction.txt"));
-		noOfTransactions = p.noOfTransactions;
-		noOfAttributes = p.noOfAttributes;
+		new Preprocess();
 		long start = System.currentTimeMillis();
 
 		System.out.println("Generating Frequent Itemsets:");
-		FrequentItemsetGeneration f = new FrequentItemsetGeneration(noOfChildsInHT,maxItemsPerNodeInHT,minSup, noOfTransactions,noOfAttributes);
+		FrequentItemsetGeneration f = new FrequentItemsetGeneration();
 
-		BufferedWriter bw = new BufferedWriter(new FileWriter("data/frequentItemsets.txt"));
-		Hashtable<Integer, String> noToAttr = p.noToAttr;
+		BufferedWriter bw = new BufferedWriter(new FileWriter(freqItemsetFile));
+		Hashtable<Integer, String> noToAttr = Preprocess.noToAttr;
 		for(int k = 1; k <= f.maxLengthOfFreqItemsets; k++){
 			bw.write("\nFrequent "+k+" Itemsets:\n");
 			HashMap<ArrayList<Integer>,Integer> FK = f.getFreqKItemset(k);
@@ -41,15 +51,15 @@ public class Main{
 			System.out.println("Frequent "+k+": "+FK.size());
 		}
 		bw.close();
-		System.out.println("Frequent Itemsets are saved in data/frequentItemsets.txt");
+		System.out.println("Frequent Itemsets are saved in data/frequentItemsets.data");
 
 		long end = System.currentTimeMillis();
 		double time = (end-start)/1000.0;
 		System.out.println("Time: "+time+" sec");
 
 		System.out.println("\nWriting Rules:");
-		new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets, minSup, minConf, noOfTransactions, p.noToAttr);
-		System.out.println("Association Rules Generated in data/AssociationRules.txt");
+		new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets);
+		System.out.println("Association Rules Generated in data/AssociationRules.data");
 
 		end = System.currentTimeMillis();
 		time = (end-start)/1000.0;

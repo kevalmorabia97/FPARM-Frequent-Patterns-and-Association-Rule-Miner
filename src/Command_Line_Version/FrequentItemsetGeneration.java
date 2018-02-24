@@ -10,12 +10,12 @@ public class FrequentItemsetGeneration{
 	int noOfTransactions, noOfAttributes, maxLengthOfFreqItemsets, noOfChilds, maxItemsPerNode;
 	ArrayList<HashMap<ArrayList<Integer>,Integer>> freqK = new ArrayList<>();//freqK[0] = F1
 
-	public FrequentItemsetGeneration(int noOfChilds, int maxItemsPerNode, double minSup, int noOfTransactions, int noOfAttributes) throws IOException{
-		this.minSup = minSup;
-		this.noOfTransactions = noOfTransactions;
-		this.noOfAttributes = noOfAttributes;
-		this.noOfChilds = noOfChilds;
-		this.maxItemsPerNode = maxItemsPerNode;
+	public FrequentItemsetGeneration() throws IOException{
+		this.minSup = Main.minSup;
+		this.noOfTransactions = Preprocess.noOfTransactions;
+		this.noOfAttributes = Preprocess.noOfAttributes;
+		this.noOfChilds = Main.noOfChildsInHT;
+		this.maxItemsPerNode = Main.maxItemsPerNodeInHT;
 
 		ArrayList<Itemset> C1 = new ArrayList<>();
 		for(int i=0;i<noOfAttributes;i++){
@@ -23,7 +23,7 @@ public class FrequentItemsetGeneration{
 			item.add(i);
 			C1.add(new Itemset(item));
 		}
-		HashMap<ArrayList<Integer>,Integer> F1 = new HashTree(C1,1,noOfChilds,maxItemsPerNode,minSup,noOfTransactions).freqK;
+		HashMap<ArrayList<Integer>,Integer> F1 = new HashTree(C1,1).freqK;
 		freqK.add(F1);
 		int k = 2;
 		while(getFreqKItemset(k-1).size()!=0){
@@ -100,7 +100,7 @@ public class FrequentItemsetGeneration{
 
 	void generateFreqK(int k) throws IOException{
 		ArrayList<Itemset> CK = aprioriGen(k);
-		HashMap<ArrayList<Integer>,Integer> FK = new HashTree(CK,k,noOfChilds,maxItemsPerNode,minSup,noOfTransactions).freqK;
+		HashMap<ArrayList<Integer>,Integer> FK = new HashTree(CK,k).freqK;
 		freqK.add(FK);
 		//printFrequentKItemsets(k);
 	}
