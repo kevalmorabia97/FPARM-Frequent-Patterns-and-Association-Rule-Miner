@@ -111,7 +111,7 @@ Here the number inside parenthesis indicates the support count of the frequent i
 
 <hr>
 
-Finally, the association rules are generated and stored in **_AssociationRules.data_** file which looks like this:
+Finally, the association rules are generated and stored in **_AssociationRules.txt_** file which looks like this:
 ```
 apple, (6) ----> ball, (8) conf(0.8333333)
 egg, (3) ----> ball, (8) conf(1.0)
