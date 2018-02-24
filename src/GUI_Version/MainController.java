@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -30,9 +31,13 @@ public class MainController implements Initializable{
 	@FXML private TextField TFnoOfChildsInHT;
 	@FXML private TextField TFmaxItemsPerNodeInHT;
 	@FXML private Hyperlink githubLink;
-	static File transactionFile,processedTransactionFile,freqItemsetFile,rulesFile;
-	static int noOfTransactions, noOfChildsInHT, maxItemsPerNodeInHT, noOfAttributes;
-	static double minSup, minConf;
+	@FXML private RadioButton attributesRequired; // YES
+	@FXML private RadioButton attributesNotRequired; // NO
+	
+	File transactionFile;
+	String processedTransactionFile,freqItemsetFile,rulesFile;
+	int noOfTransactions, noOfChildsInHT, maxItemsPerNodeInHT, noOfAttributes;
+	double minSup, minConf;
 
 	
 	@Override
@@ -68,17 +73,12 @@ public class MainController implements Initializable{
 			status.setText("Transaction File not Selected");
 		}
 	}
-
-	@FXML public void btnGenRules(ActionEvent event){
-		status.setText("Generating frequent itemsets and Association Rules");
-		genRules(event);
-	}
 	
-	private void genRules(ActionEvent event){
+	@FXML public void btnGenRules(ActionEvent event){
 		status.setText("");
-		processedTransactionFile = new File("output/processedTransaction.data");
-		freqItemsetFile = new File("output/frequentItemsets.data");
-		rulesFile = new File("output/associationRules.data");
+		processedTransactionFile = "output/processedTransaction.data";
+		freqItemsetFile = "output/frequentItemsets.data";
+		rulesFile = "output/associationRules.data";
 
 		try {
 			minSup = Double.valueOf(TFminSup.getText());
@@ -115,26 +115,27 @@ public class MainController implements Initializable{
 			e.printStackTrace();
 			return;
 		}
-
+		
+		Preprocess p;
 		try {
-			new Preprocess();
+			p = new Preprocess(attributesRequired.isSelected(), transactionFile, processedTransactionFile);
 		} catch (Exception e) {
 			status.setText("Transaction File is not selected or in the required format");
 			e.printStackTrace();
 			return;
 		}
-		noOfTransactions = Preprocess.noOfTransactions;
-		noOfAttributes = Preprocess.noOfAttributes;
+		noOfTransactions = p.noOfTransactions;
+		noOfAttributes = p.noOfAttributes;
 		long start = System.currentTimeMillis();
 
 		//status.setText(status.getText()+"Generating Frequent Itemsets:");
 		FrequentItemsetGeneration f;
 		try {
-			f = new FrequentItemsetGeneration();
+			f = new FrequentItemsetGeneration(minSup,noOfTransactions,noOfAttributes,noOfChildsInHT,maxItemsPerNodeInHT,processedTransactionFile);
 
 			//Saving Frequent Itemsets in frequentItemsets.txt
 			BufferedWriter bw = new BufferedWriter(new FileWriter(freqItemsetFile));
-			Hashtable<Integer, String> noToAttr = Preprocess.noToAttr;
+			Hashtable<Integer, String> noToAttr = p.noToAttr;
 			for(int k = 1; k <= f.maxLengthOfFreqItemsets; k++){
 				bw.write("\nFrequent "+k+" Itemsets:\n");
 				HashMap<ArrayList<Integer>,Integer> FK = f.getFreqKItemset(k);
@@ -164,7 +165,7 @@ public class MainController implements Initializable{
 
 		status.appendText("\n\nWriting Rules:");
 		try {
-			new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets);
+			new RuleGeneration(f.freqK,p.noToAttr,f.maxLengthOfFreqItemsets,minSup,minConf,rulesFile);
 		} catch (IOException e) {
 			status.appendText("Error in rule Generation");
 			e.printStackTrace();

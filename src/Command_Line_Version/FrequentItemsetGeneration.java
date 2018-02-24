@@ -7,23 +7,25 @@ import java.util.Set;
 
 public class FrequentItemsetGeneration{
 	double minSup;
-	int noOfTransactions, noOfAttributes, maxLengthOfFreqItemsets, noOfChilds, maxItemsPerNode;
+	int noOfTransactions, noOfAttributes, maxLengthOfFreqItemsets, noOfChildsInHT, maxItemsPerNodeInHT;
 	ArrayList<HashMap<ArrayList<Integer>,Integer>> freqK = new ArrayList<>();//freqK[0] = F1
+	String processedTransactionFile;
 
-	public FrequentItemsetGeneration() throws IOException{
-		this.minSup = Main.minSup;
-		this.noOfTransactions = Preprocess.noOfTransactions;
-		this.noOfAttributes = Preprocess.noOfAttributes;
-		this.noOfChilds = Main.noOfChildsInHT;
-		this.maxItemsPerNode = Main.maxItemsPerNodeInHT;
-
+	public FrequentItemsetGeneration(double minSup, int noOfTransactions, int noOfAttributes, int noOfChildsInHT, int maxItemsPerNodeInHT, String processedTransactionFile) throws IOException{
+		this.minSup = minSup;
+		this.noOfTransactions = noOfTransactions;
+		this.noOfAttributes = noOfAttributes;
+		this.noOfChildsInHT = noOfChildsInHT;
+		this.maxItemsPerNodeInHT = maxItemsPerNodeInHT;
+		this.processedTransactionFile = processedTransactionFile;
+		
 		ArrayList<Itemset> C1 = new ArrayList<>();
 		for(int i=0;i<noOfAttributes;i++){
 			ArrayList<Integer> item = new ArrayList<>();
 			item.add(i);
 			C1.add(new Itemset(item));
 		}
-		HashMap<ArrayList<Integer>,Integer> F1 = new HashTree(C1,1).freqK;
+		HashMap<ArrayList<Integer>,Integer> F1 = new HashTree(C1,1,maxItemsPerNodeInHT,noOfChildsInHT,noOfTransactions,minSup,processedTransactionFile).freqK;
 		freqK.add(F1);
 		int k = 2;
 		while(getFreqKItemset(k-1).size()!=0){
@@ -100,7 +102,7 @@ public class FrequentItemsetGeneration{
 
 	void generateFreqK(int k) throws IOException{
 		ArrayList<Itemset> CK = aprioriGen(k);
-		HashMap<ArrayList<Integer>,Integer> FK = new HashTree(CK,k).freqK;
+		HashMap<ArrayList<Integer>,Integer> FK = new HashTree(CK,k,maxItemsPerNodeInHT,noOfChildsInHT,noOfTransactions,minSup,processedTransactionFile).freqK;
 		freqK.add(FK);
 		//printFrequentKItemsets(k);
 	}

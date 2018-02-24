@@ -10,31 +10,42 @@ import java.util.Hashtable;
 import java.util.Set;
 
 public class Main{
-	static File transactionFile,processedTransactionFile,freqItemsetFile,rulesFile;
-	static int noOfTransactions, noOfAttributes, noOfChildsInHT=4, maxItemsPerNodeInHT=5; 
-	static double minSup, minConf;
 	
 	public static void main(String[] args) throws IOException{
-		// INPUT
-		transactionFile = new File("data/transaction.data");
-		minSup=.05; minConf=.5;
+		String transactionFile,processedTransactionFile,freqItemsetFile,rulesFile;
+		int noOfTransactions, noOfAttributes, noOfChildsInHT, maxItemsPerNodeInHT; 
+		double minSup, minConf;
+		boolean attributesRequired;
+		
+		////////// INPUT //////////
+		minSup=.1; minConf=.5;
 		noOfChildsInHT=4; maxItemsPerNodeInHT=5; 
 		
-		// OUTPUT
-		processedTransactionFile = new File("output/processedTransaction.data");
-		freqItemsetFile = new File("output/frequentItemsets.data");
-		rulesFile = new File("output/associationRules.data");
+		/* car.data DATASET */
+		transactionFile = "data/car.data";
+		attributesRequired = true; // if 1st line contains attribute names seperated by comma(,)
 		
+		/* groceries.csv DATASET */
+		//transactionFile = "data/groceries.csv";
+		//attributesRequired = false; // if 1st line contains attribute names seperated by comma(,)
 		
+		////////// OUTPUT //////////
+		processedTransactionFile = "output/processedTransaction.data";
+		freqItemsetFile = "output/frequentItemsets.data";
+		rulesFile = "output/associationRules.data";
+		
+///////////////////// DONT MODIFY AFTER THIS ///////////////////////////////////////////////		
 
-		new Preprocess();
+		Preprocess p = new Preprocess(attributesRequired, new File(transactionFile), processedTransactionFile);
+		noOfTransactions = p.noOfTransactions;
+		noOfAttributes = p.noOfAttributes;
 		long start = System.currentTimeMillis();
 
 		System.out.println("Generating Frequent Itemsets:");
-		FrequentItemsetGeneration f = new FrequentItemsetGeneration();
+		FrequentItemsetGeneration f = new FrequentItemsetGeneration(minSup,noOfTransactions,noOfAttributes,noOfChildsInHT,maxItemsPerNodeInHT,processedTransactionFile);
 
 		BufferedWriter bw = new BufferedWriter(new FileWriter(freqItemsetFile));
-		Hashtable<Integer, String> noToAttr = Preprocess.noToAttr;
+		Hashtable<Integer, String> noToAttr = p.noToAttr;
 		for(int k = 1; k <= f.maxLengthOfFreqItemsets; k++){
 			bw.write("\nFrequent "+k+" Itemsets:\n");
 			HashMap<ArrayList<Integer>,Integer> FK = f.getFreqKItemset(k);
@@ -58,7 +69,7 @@ public class Main{
 		System.out.println("Time: "+time+" sec");
 
 		System.out.println("\nWriting Rules:");
-		new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets);
+		new RuleGeneration(f.freqK,p.noToAttr,f.maxLengthOfFreqItemsets,minSup,minConf,rulesFile);
 		System.out.println("Association Rules Generated in output/AssociationRules.data");
 
 		end = System.currentTimeMillis();

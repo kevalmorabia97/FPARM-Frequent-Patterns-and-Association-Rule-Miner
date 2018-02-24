@@ -2,6 +2,7 @@ package src.Command_Line_Version;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,22 +12,40 @@ import java.util.Hashtable;
 import java.util.StringTokenizer;
 
 public class Preprocess{
-	static Hashtable<Integer, String> noToAttr = new Hashtable<>();
-	static Hashtable<String, Integer> AttrToNo = new Hashtable<>();
-	static int noOfTransactions=0, noOfAttributes=0;
+	Hashtable<Integer, String> noToAttr = new Hashtable<>();
+	Hashtable<String, Integer> AttrToNo = new Hashtable<>();
+	int noOfTransactions=0, noOfAttributes=0;
 
-	public Preprocess() throws IOException{
-		preprocess();
-	}
-
-	void preprocess() throws IOException{
-		BufferedReader br = new BufferedReader(new FileReader(Main.transactionFile));
-		BufferedWriter bw = new BufferedWriter(new FileWriter(Main.processedTransactionFile));
+	public Preprocess(boolean attributeNames, File transactionFile, String processedTransactionFile) throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader(transactionFile));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(processedTransactionFile));
 		String s;
-		while((s=br.readLine())!=null){	
-			bw.write(convert(s));
-			noOfTransactions++;
+		
+		if(attributeNames) { // first line contains attribute names seperated by comma(,)
+			// modify transaction file
+			BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File(processedTransactionFile).getParent()+"/transactionWithAttrs.data"));
+			
+			String[] attrs = br.readLine().split(",");
+			while((s = br.readLine()) != null) {
+				if(s.equals(""))	continue;
+				String[] vals = s.split(",");
+				String newData = "";
+				for(int i = 0; i < vals.length; i++) {
+					newData+=attrs[i]+"="+vals[i]+",";
+				}
+				bw1.write(newData+"\n");
+				bw.write(convert(newData));
+				noOfTransactions++;
+			}
+			bw1.close();
+		}else {
+			while((s=br.readLine())!=null){	
+				if(s.equals(""))	continue;
+				bw.write(convert(s));
+				noOfTransactions++;
+			}
 		}
+		
 		br.close();
 		bw.close();
 	}

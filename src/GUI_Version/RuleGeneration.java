@@ -15,13 +15,13 @@ public class RuleGeneration {
 	Hashtable<Integer,String> noToAttr;
 	BufferedWriter bw;
 
-	public RuleGeneration(ArrayList<HashMap<ArrayList<Integer>,Integer>> freqK, int maxLengthOfFreqItemsets) throws IOException{
-		this.minSup = MainController.minSup;
-		this.minConf = MainController.minConf;
+	public RuleGeneration(ArrayList<HashMap<ArrayList<Integer>,Integer>> freqK, Hashtable<Integer,String> noToAttr, int maxLengthOfFreqItemsets, double minSup, double minConf, String rulesFile) throws IOException{
+		this.minSup = minSup;
+		this.minConf = minConf;
 		this.maxLengthOfFreqItemsets = maxLengthOfFreqItemsets;
 		this.freqK = freqK;
-		this.noToAttr = Preprocess.noToAttr;
-		bw = new BufferedWriter(new FileWriter(MainController.rulesFile));
+		this.noToAttr = noToAttr;
+		bw = new BufferedWriter(new FileWriter(rulesFile));
 		generateRules();
 		bw.close();
 	}
