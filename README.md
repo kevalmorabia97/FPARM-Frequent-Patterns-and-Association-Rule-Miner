@@ -1,6 +1,6 @@
 # _FPARM - Frequent Patterns and Association Rule Miner_
 
-Download the compiled jar file here: https://drive.google.com/file/d/1Hv9nF2n5GWlGRswIiCJh52k25yP3-QWU/view?usp=sharing
+Download the compiled jar file here: https://drive.google.com/open?id=1fgQIspKOfpATCoxMjkN3lAgBWtQmYjSI
 
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 <br>There is a GUI version and a command line version.
@@ -141,3 +141,5 @@ dandiya, (5) ----> fish, (6) conf(0.8)
 egg, (3) ----> apple, (6) conf(1.0)
 ```
 Here the number inside parenthesis besides the itemset is its support count and conf(*) denotes the confidence of the association rule
+
+**To-Do**: Handling continuous data
