@@ -33,13 +33,13 @@ public class MainController implements Initializable{
 	@FXML private Hyperlink githubLink;
 	@FXML private RadioButton attributesRequired; // YES
 	@FXML private RadioButton attributesNotRequired; // NO
-	
+
 	File transactionFile;
 	String processedTransactionFile,freqItemsetFile,rulesFile;
 	int noOfTransactions, noOfChildsInHT, maxItemsPerNodeInHT, noOfAttributes;
 	double minSup, minConf;
 
-	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		TFminSup.setTooltip(new Tooltip("Minimum Support"));
@@ -47,16 +47,24 @@ public class MainController implements Initializable{
 		TFnoOfChildsInHT.setTooltip(new Tooltip("No Of Childs In HashTree"));
 		TFmaxItemsPerNodeInHT.setTooltip(new Tooltip("Max Items Per Node In HashTree"));
 		status.setEditable(false);
-		
+
 		githubLink.setTooltip(new Tooltip("kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner"));
 		githubLink.setOnAction(e -> {
-		        try {
-					new ProcessBuilder("x-www-browser", "https://github.com/kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner").start();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+			try {
+				new ProcessBuilder("x-www-browser", "https://github.com/kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner").start();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		});
 		
+		status.setWrapText(true);
+		status.setText("Attribute Names Required?"
+				+ "\n\nIf YES then first line of dataset mush contain names of attributes seperated by comma(,)"
+				+ "\nExample: buying,maint,doors,persons,lug_boot,LABEL"
+				+ "\n\nSo, the dataset of the form: vhigh,vhigh,2,2,small,unacc"
+				+ "\nwill be converted to the following form:"
+				+ "\nbuying=vhigh,maint=vhigh,doors=2,persons=2,lug_boot=small,LABEL=unacc"
+				+ "\n\nStill confused? View README on Github");
 	}
 
 	@FXML public void getTransactionFile() {
@@ -73,9 +81,10 @@ public class MainController implements Initializable{
 			status.setText("Transaction File not Selected");
 		}
 	}
-	
+
 	@FXML public void btnGenRules(ActionEvent event){
 		status.setText("");
+		// remove "output/" when exporting as .jar
 		processedTransactionFile = "output/processedTransaction.data";
 		freqItemsetFile = "output/frequentItemsets.data";
 		rulesFile = "output/associationRules.data";
@@ -115,7 +124,7 @@ public class MainController implements Initializable{
 			e.printStackTrace();
 			return;
 		}
-		
+
 		Preprocess p;
 		try {
 			p = new Preprocess(attributesRequired.isSelected(), transactionFile, processedTransactionFile);
@@ -175,7 +184,7 @@ public class MainController implements Initializable{
 		end = System.currentTimeMillis();
 		time = (end-start)/1000.0;
 		status.appendText("\nTime: "+time+" sec\nEND...");
-		status.appendText("\n\nAssociation Rules Generated in output/AssociationRules.data");
+		status.appendText("\n\nAssociation Rules Generated in output/associationRules.data");
 	}
 
 }

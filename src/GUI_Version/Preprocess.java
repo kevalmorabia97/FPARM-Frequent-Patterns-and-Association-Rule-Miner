@@ -22,8 +22,11 @@ public class Preprocess{
 		String s;
 		
 		if(attributeNames) { // first line contains attribute names seperated by comma(,)
-			// modify transaction file
+			// modify transaction file with attribute names
 			BufferedWriter bw1 = new BufferedWriter(new FileWriter(new File(processedTransactionFile).getParent()+"/transactionWithAttrs.data"));
+			
+			// for exporting as .jar
+			//BufferedWriter bw1 = new BufferedWriter(new FileWriter("transactionWithAttrs.data"));
 			
 			String[] attrs = br.readLine().split(",");
 			while((s = br.readLine()) != null) {
