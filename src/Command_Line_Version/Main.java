@@ -21,9 +21,9 @@ public class Main{
 		noOfChildsInHT=4; maxItemsPerNodeInHT=5; 
 		
 		// OUTPUT
-		processedTransactionFile = new File("data/processedTransaction.data");
-		freqItemsetFile = new File("data/frequentItemsets.data");
-		rulesFile = new File("data/associationRules.data");
+		processedTransactionFile = new File("output/processedTransaction.data");
+		freqItemsetFile = new File("output/frequentItemsets.data");
+		rulesFile = new File("output/associationRules.data");
 		
 		
 
@@ -51,7 +51,7 @@ public class Main{
 			System.out.println("Frequent "+k+": "+FK.size());
 		}
 		bw.close();
-		System.out.println("Frequent Itemsets are saved in data/frequentItemsets.data");
+		System.out.println("Frequent Itemsets are saved in output/frequentItemsets.data");
 
 		long end = System.currentTimeMillis();
 		double time = (end-start)/1000.0;
@@ -59,7 +59,7 @@ public class Main{
 
 		System.out.println("\nWriting Rules:");
 		new RuleGeneration(f.freqK, f.maxLengthOfFreqItemsets);
-		System.out.println("Association Rules Generated in data/AssociationRules.data");
+		System.out.println("Association Rules Generated in output/AssociationRules.data");
 
 		end = System.currentTimeMillis();
 		time = (end-start)/1000.0;

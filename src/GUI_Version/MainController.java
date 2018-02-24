@@ -76,9 +76,9 @@ public class MainController implements Initializable{
 	
 	private void genRules(ActionEvent event){
 		status.setText("");
-		processedTransactionFile = new File("data/processedTransaction.data");
-		freqItemsetFile = new File("data/frequentItemsets.data");
-		rulesFile = new File("data/associationRules.data");
+		processedTransactionFile = new File("output/processedTransaction.data");
+		freqItemsetFile = new File("output/frequentItemsets.data");
+		rulesFile = new File("output/associationRules.data");
 
 		try {
 			minSup = Double.valueOf(TFminSup.getText());
@@ -151,7 +151,7 @@ public class MainController implements Initializable{
 				status.appendText("Frequent "+k+": "+FK.size()+"\n");
 			}
 			bw.close();
-			status.appendText("\nFrequent Itemsets are saved in data/frequentItemsets.data\n");
+			status.appendText("\nFrequent Itemsets are saved in output/frequentItemsets.data\n");
 		} catch (IOException e) {
 			status.appendText("Error in generating frequent itemsets");
 			e.printStackTrace();
@@ -174,7 +174,7 @@ public class MainController implements Initializable{
 		end = System.currentTimeMillis();
 		time = (end-start)/1000.0;
 		status.appendText("\nTime: "+time+" sec\nEND...");
-		status.appendText("\n\nAssociation Rules Generated in data/AssociationRules.data");
+		status.appendText("\n\nAssociation Rules Generated in output/AssociationRules.data");
 	}
 
 }
