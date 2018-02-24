@@ -24,7 +24,7 @@ $ sudo apt-get install oracle-java8-installer
 ```
 
 <br>The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
-<br>![Image](https://mrcheerful.000webhostapp.com/Apriori%20GUI%20GitHub%20Repo.PNG)<br>
+<br>![Image](https://mrcheerful.000webhostapp.com/FPARM-Frequent-Patterns-and-Association-Rule-Miner.png)<br>
 
 You can directly run the application by extracting the jar inside **_FPARM-Frequent.Patterns.and.Association.Rule.Miner.zip_** file and running it. You will need ORACLE JDK to run the JAVA Fx .jar file.
 <br>**Note:** Dont directly run from zip file as the files generated will be stored in cache. So first extract then only run the .jar.
@@ -61,9 +61,30 @@ apple,caramel,fish,fish
 apple,ball,dandiya,fish,milk
 ball,caramel,fish
 ```
+**Attribute Names Required? - YES or NO**
+```
+If YES then first line of dataset mush contain names of attributes seperated by comma(,)
+Example: buying,maint,doors,person,lug_boo,LABEL
+
+Required if the data is of the following form:
+
+ | buying | maint | doors | persons | lug_boot | LABEL |
+---------------------------------------------------------
+ | vhigh  | vhigh |  2    |    2    |  small   | unacc
+ | vhigh  |  high |  2    |   more  |   big    | unacc
+ | vhigh  |  med  |  2    |    4    |  small   |  acc 
+ |  high  | vhigh |  4    |    2    |  small   | unacc 
+
+So, the dataset implies that the data is of the form: buying=vhigh,maint=vhigh,doors=2,persons=2,lug_boot=small,LABEL=unacc
+Doing this, ambiguity in data values can be eliminated
+That is, buying=vhigh is considered different than maint=vhigh
+```
+For generaly market basket datasets, this is not required as the the values in each dataset row
+<br>does not mean that it belongs that particular column
+
 ### Note: 
 - If the transaction has more than one appearance of an item then only one appearance is considered
-- If you have transaction in the form of like this then also the algorithm works
+- If you have transaction in the form of like this then also the program works
 ```
 bus=yes,plane=no,rich=yes
 ```
