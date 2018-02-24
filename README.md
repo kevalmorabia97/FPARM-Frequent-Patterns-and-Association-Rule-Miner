@@ -6,7 +6,7 @@ This is an implementation of Apriori algorithm for frequent itemset generation u
 <br>There is a GUI version and a command line version.
 
 **Running The Program from _FPARM-Frequent-Patterns-and-Association-Rule-Miner_ folder**
-<br>**Note:** The dataset should be inside _**data**_ folder and named _**Transaction.txt**_ for Command_Line_Version or you can change the dataset path inside src\Command_Line_Version\Main.java
+<br>**Note:** For Command_Line_Version, the dataset path should be specified in src\Command_Line_Version\Main.java file
 ```
 Command_Line_Version:
 $ javac src\Command_Line_Version\Main.java
@@ -45,8 +45,8 @@ The confidence value of a rule, X => Y with respect to a set of transactions T, 
 
 1. First, the application generates frequent 1 itemsets.
 2. After generating Frequent K itemsets, it generate Frequent K+1 itemsets by using F<sub>k-1</sub> x F<sub>k-1</sub> approach.
-3. The frequent itemsets are stored in **frequentItemsets.txt** file
-4. When all frequent itemsets are generated, associating rules that have confidence greater than minimum confidence are generated and stored in the file named **AssociationRules.txt** file.
+3. The frequent itemsets are stored in **frequentItemsets.data** file
+4. When all frequent itemsets are generated, associating rules that have confidence greater than minimum confidence are generated and stored in the file named **associationRules.data** file.
 
 Read about Association Rule Mining: _https://en.wikipedia.org/wiki/Association_rule_learning_
 
@@ -60,10 +60,6 @@ ball,caramel,dandiya,fish,milk
 apple,caramel,fish,fish
 apple,ball,dandiya,fish,milk
 ball,caramel,fish
-apple,ball,dandiya,dandiya,egg,fish,apple
-caramel,dandiya,milk
-apple,ball,caramel,milk
-ball,caramel,milk,ball
 ```
 ### Note: 
 - If the transaction has more than one appearance of an item then only one appearance is considered
@@ -92,10 +88,6 @@ The processed transaction is saved inside **_ProcessedTransaction.txt_** file wh
 0,4,5,
 0,1,3,4,6,
 1,4,5,
-0,1,2,3,4,
-3,5,6,
-0,1,5,6,
-1,5,6,
 ```
 
 <hr>
@@ -107,35 +99,13 @@ ball, (8)
 egg, (3)
 dandiya, (5)
 fish, (6)
-caramel, (6)
-milk, (5)
-apple, (6)
 
 Frequent 2 Itemsets:
 apple, ball, (5)
 fish, caramel, (3)
-ball, egg, (3)
-caramel, milk, (4)
-dandiya, fish, (4)
-apple, egg, (3)
-ball, dandiya, (4)
-apple, dandiya, (3)
-ball, fish, (5)
-dandiya, milk, (3)
-apple, fish, (4)
-ball, caramel, (4)
-ball, milk, (4)
 
 Frequent 3 Itemsets:
 apple, ball, egg, (3)
-apple, dandiya, fish, (3)
-apple, ball, dandiya, (3)
-ball, dandiya, fish, (4)
-ball, caramel, milk, (3)
-apple, ball, fish, (3)
-
-Frequent 4 Itemsets:
-apple, ball, dandiya, fish, (3)
 ```
 Here the number inside parenthesis indicates the support count of the frequent itemset
 
@@ -148,32 +118,5 @@ egg, (3) ----> ball, (8) conf(1.0)
 milk, (5) ----> caramel, (6) conf(0.8)
 dandiya, (5) ----> fish, (6) conf(0.8)
 egg, (3) ----> apple, (6) conf(1.0)
-dandiya, (5) ----> ball, (8) conf(0.8)
-fish, (6) ----> ball, (8) conf(0.8333333)
-milk, (5) ----> ball, (8) conf(0.8)
-ball, egg, (3) ----> apple, (6) conf(1.0)
-apple, egg, (3) ----> ball, (8) conf(1.0)
-egg, (3) ----> apple, ball, (5) conf(1.0)
-dandiya, fish, (4) ----> apple, (6) conf(0.75)
-apple, fish, (4) ----> dandiya, (5) conf(0.75)
-apple, dandiya, (3) ----> fish, (6) conf(1.0)
-ball, dandiya, (4) ----> apple, (6) conf(0.75)
-apple, dandiya, (3) ----> ball, (8) conf(1.0)
-dandiya, fish, (4) ----> ball, (8) conf(1.0)
-ball, fish, (5) ----> dandiya, (5) conf(0.8)
-ball, dandiya, (4) ----> fish, (6) conf(1.0)
-dandiya, (5) ----> ball, fish, (5) conf(0.8)
-caramel, milk, (4) ----> ball, (8) conf(0.75)
-ball, milk, (4) ----> caramel, (6) conf(0.75)
-ball, caramel, (4) ----> milk, (5) conf(0.75)
-apple, fish, (4) ----> ball, (8) conf(0.75)
-ball, dandiya, fish, (4) ----> apple, (6) conf(0.75)
-apple, dandiya, fish, (3) ----> ball, (8) conf(1.0)
-apple, ball, fish, (3) ----> dandiya, (5) conf(1.0)
-apple, ball, dandiya, (3) ----> fish, (6) conf(1.0)
-dandiya, fish, (4) ----> apple, ball, (5) conf(0.75)
-ball, dandiya, (4) ----> apple, fish, (4) conf(0.75)
-apple, fish, (4) ----> ball, dandiya, (4) conf(0.75)
-apple, dandiya, (3) ----> ball, fish, (5) conf(1.0)
 ```
 Here the number inside parenthesis besides the itemset is its support count and conf(*) denotes the confidence of the association rule
