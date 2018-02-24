@@ -101,7 +101,7 @@ Age=[21,30),Salary=[70k,120k),Browser=Mozilla
 <hr>
 
 After that, the transaction is processed and converted to numbers which makes it easier to handle in the hashtree
-The processed transaction is saved inside **_ProcessedTransaction.data_** file which looks like this:
+The processed transaction is saved inside **_processedTransaction.data_** file which looks like this:
 ```
 0,1,2,
 0,1,2,3,4,
@@ -132,7 +132,7 @@ Here the number inside parenthesis indicates the support count of the frequent i
 
 <hr>
 
-Finally, the association rules are generated and stored in **_AssociationRules.data_** file which looks like this:
+Finally, the association rules are generated and stored in **_associationRules.data_** file which looks like this:
 ```
 apple, (6) ----> ball, (8) conf(0.8333333)
 egg, (3) ----> ball, (8) conf(1.0)
