@@ -16,7 +16,7 @@ public class Main{
 	
 	public static void main(String[] args) throws IOException{
 		// INPUT
-		transactionFile = new File("data/Transaction.data");
+		transactionFile = new File("data/transaction.data");
 		minSup=.05; minConf=.5;
 		noOfChildsInHT=4; maxItemsPerNodeInHT=5; 
 		
