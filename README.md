@@ -2,6 +2,7 @@
 
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 <br>There is a GUI version and a command line version.
+<br>![Image](https://mrcheerful.000webhostapp.com/FPARM-Frequent-Patterns-and-Association-Rule-Miner.png)<br>
 
 **Running The Program from _FPARM-Frequent-Patterns-and-Association-Rule-Miner_ folder**
 <br>**Note:** For Command_Line_Version, the dataset path should be specified in src\Command_Line_Version\Main.java file
@@ -20,9 +21,6 @@ $ sudo add-apt-repository ppa:webupd8team/java
 $ sudo apt-get update
 $ sudo apt-get install oracle-java8-installer
 ```
-
-<br>The GUI of this application is made using JAVA FX and scene builder which looks like the image below.
-<br>![Image](https://mrcheerful.000webhostapp.com/FPARM-Frequent-Patterns-and-Association-Rule-Miner.png)<br>
 
 You can directly run the application by extracting the jar inside **_FPARM-Frequent.Patterns.and.Association.Rule.Miner.zip_** file and running it. You will need ORACLE JDK to run the JAVA Fx .jar file.
 <br>The program can handle any kind of data as long as it is in the required format
