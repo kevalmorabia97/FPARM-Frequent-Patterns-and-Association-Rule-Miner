@@ -1,7 +1,5 @@
 # _FPARM - Frequent Patterns and Association Rule Miner_
 
-Download the compiled jar file here: https://drive.google.com/open?id=1fgQIspKOfpATCoxMjkN3lAgBWtQmYjSI
-
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 <br>There is a GUI version and a command line version.
 
@@ -27,6 +25,7 @@ $ sudo apt-get install oracle-java8-installer
 <br>![Image](https://mrcheerful.000webhostapp.com/FPARM-Frequent-Patterns-and-Association-Rule-Miner.png)<br>
 
 You can directly run the application by extracting the jar inside **_FPARM-Frequent.Patterns.and.Association.Rule.Miner.zip_** file and running it. You will need ORACLE JDK to run the JAVA Fx .jar file.
+<br>The program can handle any kind of data as long as it is in the required format
 <br>**Note:** Dont directly run from zip file as the files generated will be stored in cache. So first extract then only run the .jar.
 <hr>
 
