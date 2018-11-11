@@ -1,9 +1,12 @@
 package src.GUI_Version;
 
+import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +42,6 @@ public class MainController implements Initializable{
 	int noOfTransactions, noOfChildsInHT, maxItemsPerNodeInHT, noOfAttributes;
 	double minSup, minConf;
 
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		TFminSup.setTooltip(new Tooltip("Minimum Support"));
@@ -51,8 +53,8 @@ public class MainController implements Initializable{
 		githubLink.setTooltip(new Tooltip("kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner"));
 		githubLink.setOnAction(e -> {
 			try {
-				new ProcessBuilder("x-www-browser", "https://github.com/kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner").start();
-			} catch (IOException e1) {
+				Desktop.getDesktop().browse(new URI("https://github.com/kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner"));
+			} catch (IOException | URISyntaxException e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -70,12 +72,12 @@ public class MainController implements Initializable{
 	@FXML public void getTransactionFile() {
 		FileChooser fc = new FileChooser();
 		//fc.getExtensionFilters().add(new ExtensionFilter("Text", "*.txt"));
-		/*
+		
 		try {
 			fc.setInitialDirectory(new File(MainController.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-		}*/
+		}
 		transactionFile = fc.showOpenDialog(null);
 		if(transactionFile == null){
 			status.setText("Transaction File not Selected");

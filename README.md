@@ -2,7 +2,7 @@
 
 This is an implementation of Apriori algorithm for frequent itemset generation using HashTree data structure and association rules are generated from these frequent itemsets
 <br>There is a GUI version and a command line version.
-<br>![Image](https://mrcheerful.000webhostapp.com/FPARM-Frequent-Patterns-and-Association-Rule-Miner.png)<br>
+<br>![Image](https://github.com/kevalmorabia97/FPARM-Frequent-Patterns-and-Association-Rule-Miner/blob/master/data/gui.png)<br>
 
 **Running The Program from _FPARM-Frequent-Patterns-and-Association-Rule-Miner_ folder**
 <br>**Note:** For Command_Line_Version, the dataset path should be specified in src\Command_Line_Version\Main.java file
