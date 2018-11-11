@@ -59,7 +59,7 @@ public class MainController implements Initializable{
 		
 		status.setWrapText(true);
 		status.setText("Attribute Names Required?"
-				+ "\n\nIf YES then first line of dataset mush contain names of attributes seperated by comma(,)"
+				+ "\n\nIf YES then first line of dataset must contain names of attributes seperated by comma(,)"
 				+ "\nExample: buying,maint,doors,persons,lug_boot,LABEL"
 				+ "\n\nSo, the dataset of the form: vhigh,vhigh,2,2,small,unacc"
 				+ "\nwill be converted to the following form:"
